@@ -3,11 +3,11 @@ MyApp.service('GraphService', function ($http) {
 
     const sv = this;
 
-    sv.getInfo = function () {
+    sv.getInfo = () => {
         return $http({
             method: 'GET',
             url: 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/GDP-data.json'
-        }).then(function (response) {
+        }).then( (response) => {
             console.log('in service, data: ', response.data);
             sv.graphData = response.data;
             return response.data;

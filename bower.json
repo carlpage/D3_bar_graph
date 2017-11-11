@@ -1,0 +1,25 @@
+{
+  "name": "barchart",
+  "description": "",
+  "main": "index.html",
+  "license": "ISC",
+  "homepage": "https://github.com/carlpage/D3_bar_graph",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.6",
+    "d3": "^4.11.0",
+    "nvd3": "^1.8.6",
+    "angularjs-nvd3-directives": "^0.0.7"
+  },
+  "resolutions": {
+    "d3": "~3.3.13",
+    "angular": "^1.6.6",
+    "nvd3": "~v1.1.15-beta"
+  }
+}

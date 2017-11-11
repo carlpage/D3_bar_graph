@@ -1,6 +1,6 @@
 'use strict';
 
-var MyApp = angular.module('MyApp', []);
+var MyApp = angular.module('MyApp', ['nvd3ChartDirectives']);
 'use strict';
 
 MyApp.controller('GraphController', ['GraphService', function (GraphService) {
@@ -11,12 +11,22 @@ MyApp.controller('GraphController', ['GraphService', function (GraphService) {
     vm.getInfo = function () {
         console.log("in getInfo");
         GraphService.getInfo().then(function (response) {
-            console.log(response);
-            vm.graphData = GraphService.graphData;
+            var data = response.data;
+            for (var i = 0; i <= data.length - 1; i++) {
+                var unixTime = Date.parse(data[i][0]).getTime() / 1000;
+                data[i].shift();
+                data[i].unshift(unixTime);
+            }
+            console.log(data);
+            var input = {
+                key: GraphService.graphData.name,
+                values: data
+            };
+            vm.graphData = input;
         });
     };
 
-    vm.getInfo();
+    vm.xFunction = function () {};
 }]); // end controller
 'use strict';
 

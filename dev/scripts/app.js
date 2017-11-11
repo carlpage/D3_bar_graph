@@ -1,1 +1,1 @@
-const MyApp = angular.module('MyApp', []);
+const MyApp = angular.module('MyApp', ['nvd3ChartDirectives']);

@@ -20,7 +20,7 @@ const plumberErrorHandler = {
     })
 };
 
-gulp.task('styles', function () {
+gulp.task('styles', () => {
     gulp.src('./dev/scss/main.scss')
         .pipe(plumber(plumberErrorHandler))
         .pipe(sass())
@@ -31,19 +31,19 @@ gulp.task('styles', function () {
         .pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('scripts', function () {
+gulp.task('scripts', () => {
     gulp.src(['./dev/scripts/**/**.js', '!./dist/js/*/min.js'])
         .pipe(plumber(plumberErrorHandler))
         .pipe(rename({suffix: '.min'}))
         // .pipe(stripDebug())
         .pipe(babel({presets: ['env']}))
         .pipe(concat('all.js'))
-        // .pipe(uglify().on('error', function (err) {gutil.log(gutil.colors.red('[Error]'), err.toString());this.emit('end');}))
+        // .pipe(uglify().on('error', (e =>rr) {gutil.log(gutil.colors.red('[Error]'), err.toString());this.emit('end');}))
         .pipe(gulp.dest('./dist/js'))
         .pipe(browserSync.reload({stream: true}));
 });
 
-// gulp.task('images', function() {
+// gulp.task('images', () => {
 //   gulp.src('./images/*.*')
 //     .pipe(plumber(plumberErrorHandler))
 //     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
@@ -51,13 +51,13 @@ gulp.task('scripts', function () {
 //     .pipe(notify({ message: 'Images task complete' }));
 // });
 
-gulp.task('html', function () {
+gulp.task('html', () => {
     gulp.src(['./**.html'])
         .pipe(plumber(plumberErrorHandler))
         .pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('serve', function () {
+gulp.task('serve', () => {
     browserSync.init({
         server: {
             baseDir: './'
