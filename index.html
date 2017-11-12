@@ -18,8 +18,8 @@
     <title>Bar Chart</title>
 </head>
 <body ng-controller="GraphController as gc">
-    
-<nvd3-cumulative-line-chart ng-init="gc.getInfo()"
+    <div class="graph1">
+<nvd3-line-chart ng-init="gc.getInfo()"
     data="gc.graphData"
     id="graph" 
     width="800" 
@@ -27,9 +27,12 @@
     showXAxis="true" 
     showYAxis="true"
     tooltips="true" 
-    interactive="true">
+    isArea="true"
+    interactive="true"
+    showLegend="true">
     <svg></svg>
-</nvd3-cumulative-line-chart>
+</nvd3-line-chart>
+</div>
 
 
 </body>

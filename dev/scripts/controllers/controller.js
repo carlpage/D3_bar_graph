@@ -10,6 +10,7 @@ MyApp.controller('GraphController', ['GraphService', function (GraphService) {
             let arr = [];
             console.log(data);
             for (let i = 0; i <= data.length - 1; i++) {
+                console.log(data[i][0]);
                 let time = data[i][0].split("-")[0];
                 data[i].shift();
                 data[i].unshift(time);
