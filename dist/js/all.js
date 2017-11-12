@@ -12,21 +12,20 @@ MyApp.controller('GraphController', ['GraphService', function (GraphService) {
         console.log("in getInfo");
         GraphService.getInfo().then(function (response) {
             var data = response.data;
-            for (var i = 0; i <= data.length - 1; i++) {
-                var unixTime = Date.parse(data[i][0]).getTime() / 1000;
-                data[i].shift();
-                data[i].unshift(unixTime);
-            }
+            var arr = [];
             console.log(data);
-            var input = {
+            for (var i = 0; i <= data.length - 1; i++) {
+                var time = data[i][0].split("-")[0];
+                data[i].shift();
+                data[i].unshift(time);
+            } // end loop
+            var input = [{
                 key: GraphService.graphData.name,
                 values: data
-            };
+            }];
             vm.graphData = input;
         });
-    };
-
-    vm.xFunction = function () {};
+    }; // end getInfo
 }]); // end controller
 'use strict';
 
