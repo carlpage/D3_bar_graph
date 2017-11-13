@@ -4,20 +4,20 @@ var MyApp = angular.module('MyApp', ['nvd3ChartDirectives']);
 'use strict';
 
 MyApp.controller('GraphController', ['GraphService', function (GraphService) {
-    console.log("in controller");
+    void 0;
 
     var vm = this;
 
     vm.getInfo = function () {
-        console.log("in getInfo");
+        void 0;
         GraphService.getInfo().then(function (response) {
             var data = response.data;
             var arr = [];
-            console.log(data);
+            void 0;
             for (var i = 0; i <= data.length - 1; i++) {
-                console.log(data[i][0]);
+                void 0;
                 var time = data[i][0].split("-")[0];
-                console.log(time);
+                void 0;
                 data[i].shift();
                 data[i].unshift(time);
             } // end loop
@@ -32,7 +32,7 @@ MyApp.controller('GraphController', ['GraphService', function (GraphService) {
 'use strict';
 
 MyApp.service('GraphService', function ($http) {
-    console.log("in service");
+    void 0;
 
     var sv = this;
 
@@ -41,7 +41,7 @@ MyApp.service('GraphService', function ($http) {
             method: 'GET',
             url: 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/GDP-data.json'
         }).then(function (response) {
-            console.log('in service, data: ', response.data);
+            void 0;
             sv.graphData = response.data;
             return response.data;
         });

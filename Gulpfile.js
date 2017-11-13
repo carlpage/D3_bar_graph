@@ -9,6 +9,7 @@ const gulp = require('gulp'),
       concat = require('gulp-concat'),
       babel = require('gulp-babel'),
       rename = require('gulp-rename'),
+      htmlmin = require('gulp-htmlmin'),
       plumber = require('gulp-plumber'),
       gutil = require('gulp-util'),
       autoprefixer = require('gulp-autoprefixer');
@@ -35,7 +36,7 @@ gulp.task('scripts', () => {
     gulp.src(['./dev/scripts/**/**.js', '!./dist/js/*/min.js'])
         .pipe(plumber(plumberErrorHandler))
         .pipe(rename({suffix: '.min'}))
-        // .pipe(stripDebug())
+        .pipe(stripDebug())
         .pipe(babel({presets: ['env']}))
         .pipe(concat('all.js'))
         // .pipe(uglify().on('error', (e =>rr) {gutil.log(gutil.colors.red('[Error]'), err.toString());this.emit('end');}))
@@ -54,6 +55,11 @@ gulp.task('scripts', () => {
 gulp.task('html', () => {
     gulp.src(['./**.html'])
         .pipe(plumber(plumberErrorHandler))
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(gulp.dest('dist'))
         .pipe(browserSync.reload({stream: true}));
 });
 
